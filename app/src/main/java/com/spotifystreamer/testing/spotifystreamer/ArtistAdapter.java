@@ -17,6 +17,11 @@ import java.util.ArrayList;
 
 public class ArtistAdapter extends ArrayAdapter<Artist> {
 
+    private static class ViewHolder {
+        TextView name;
+        ImageView thumbnail;
+    }
+
     public ArtistAdapter(Context context, ArrayList<Artist> artists) {
         super(context, R.layout.search_list_item, artists);
     }
@@ -24,21 +29,34 @@ public class ArtistAdapter extends ArrayAdapter<Artist> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+
         // Get the data item for this position
         Artist artist = getItem(position);
 
+        ViewHolder viewHolder;
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
+
+            viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.search_list_item, parent, false);
+            viewHolder.name = (TextView) convertView.findViewById(R.id.search_list_item_artist_name);
+            viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.search_list_item_artist_thumbnail);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        // Lookup view for data population
-        ImageView artistThumbnail = (ImageView) convertView.findViewById(R.id.search_list_item_artist_thumbnail);
-        TextView artistName = (TextView) convertView.findViewById(R.id.search_list_item_artist_name);
+        viewHolder.name.setText(artist.name);
+        viewHolder.thumbnail.setImageDrawable(artist.thumbnail);
 
-        // Populate the data into the template view using the data object
-        artistThumbnail.setImageDrawable(artist.thumbnail);
-        artistName.setText(artist.name);
+//        // Lookup view for data population
+//        ImageView artistThumbnail = (ImageView) convertView.findViewById(R.id.search_list_item_artist_thumbnail);
+//        TextView artistName = (TextView) convertView.findViewById(R.id.search_list_item_artist_name);
+//
+//        // Populate the data into the template view using the data object
+//        artistThumbnail.setImageDrawable(artist.thumbnail);
+//        artistName.setText(artist.name);
 
         return convertView;
     }
