@@ -23,8 +23,7 @@ public class MainActivityFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        final ArrayList<Artist> arrayOfArtist = new ArrayList<Artist>();
-
+        final ArrayList<Artist> arrayOfArtist = new ArrayList<>();
         final ArtistAdapter adapter = new ArtistAdapter(getActivity(), arrayOfArtist);
 
         ListView listView = (ListView) rootView.findViewById(R.id.search_list_view);
@@ -33,16 +32,8 @@ public class MainActivityFragment extends Fragment {
         Artist tempArtist;
 
         for (int i = 0; i < 20; i++) {
-
-            tempArtist = new Artist(Integer.toString(i), getActivity().getResources().getDrawable(R.drawable.beyon));
+            tempArtist = new Artist(Integer.toString(i), "https://i.scdn.co/image/a31006f22ea598522c0e2136c9e6365c62a8a4f0");
             adapter.add(tempArtist);
-
-//            try {
-//                //tempArtist = new Artist(Integer.toString(i), getActivity().getPackageManager().getApplicationIcon(getActivity().getPackageName()));
-//                adapter.add(tempArtist);
-//            } catch (PackageManager.NameNotFoundException e) {
-//                e.printStackTrace();
-//            }
         }
 
         Button removeButton = (Button) rootView.findViewById(R.id.remove_data_button);
