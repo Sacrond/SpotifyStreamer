@@ -1,6 +1,7 @@
 package com.spotifystreamer.testing.spotifystreamer;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class ArtistAdapter extends ArrayAdapter<Artist> {
 
     public ArtistAdapter(Context context, ArrayList<Artist> artists) {
-        super(context, 0, artists);
+        super(context, R.layout.search_list_item, artists);
     }
 
     @Override

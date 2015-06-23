@@ -1,12 +1,11 @@
 package com.spotifystreamer.testing.spotifystreamer;
 
 import android.app.Fragment;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,25 +23,40 @@ public class MainActivityFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ArrayList<Artist> arrayOfArtist = new ArrayList<Artist>();
+        final ArrayList<Artist> arrayOfArtist = new ArrayList<Artist>();
 
-        ArtistAdapter adapter = new ArtistAdapter(getActivity(), arrayOfArtist);
+        final ArtistAdapter adapter = new ArtistAdapter(getActivity(), arrayOfArtist);
 
         ListView listView = (ListView) rootView.findViewById(R.id.search_list_view);
         listView.setAdapter(adapter);
 
-        Artist temp = null;
+        Artist tempArtist;
 
-        for (int i = 0; i < 1000; i++) {
-            try {
-                temp = new Artist(Integer.toString(i), getActivity().getPackageManager().getApplicationIcon(getActivity().getPackageName()));
-                adapter.add(temp);
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
+        for (int i = 0; i < 20; i++) {
+
+            tempArtist = new Artist(Integer.toString(i), getActivity().getResources().getDrawable(R.drawable.beyon));
+            adapter.add(tempArtist);
+
+//            try {
+//                //tempArtist = new Artist(Integer.toString(i), getActivity().getPackageManager().getApplicationIcon(getActivity().getPackageName()));
+//                adapter.add(tempArtist);
+//            } catch (PackageManager.NameNotFoundException e) {
+//                e.printStackTrace();
+//            }
         }
 
-        Log.e("TESTINGGGGGGG", Integer.toString(arrayOfArtist.size()));
+        Button removeButton = (Button) rootView.findViewById(R.id.remove_data_button);
+
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (arrayOfArtist.size() > 0) {
+                    arrayOfArtist.remove(arrayOfArtist.size() - 1);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
 
         return rootView;
     }

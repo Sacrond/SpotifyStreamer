@@ -4,20 +4,22 @@
     android:id="@+id/search_list_item_artist"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/search_list_item_artist_thumbnail"
         android:contentDescription="@string/artist_thumbnail"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
+        android:layout_margin="5dp"
+        android:layout_height="64dp"
+        android:layout_width="64dp"/>
 
     <TextView
         android:id="@+id/search_list_item_artist_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
         android:gravity="center_vertical"
         android:minHeight="?android:attr/listPreferredItemHeight"/>
-
 
 </LinearLayout>
