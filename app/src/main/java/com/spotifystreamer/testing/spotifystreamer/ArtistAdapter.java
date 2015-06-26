@@ -30,7 +30,6 @@ public class ArtistAdapter extends ArrayAdapter<Artist> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-
         // Get the data item for this position
         Artist artist = getItem(position);
 
